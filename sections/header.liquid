@@ -1,144 +1,93 @@
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+<sticky-header class="custom-header" data-sticky-type="on-scroll-up">
+  <header class="custom-navbar">
+    <div class="navbar-left">
+      <h1 class="navbar-logo">TISSO VISION</h1>
+      <p class="navbar-subtitle">Find the ideal gift for your loved ones.</p>
+    </div>
 
-{%- if settings.predictive_search_enabled -%}
-  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
-
-{%- if section.settings.menu_type_desktop == 'mega' -%}
-  <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
+    <div class="navbar-right">
+      <a href="/collections/all" class="gift-btn">
+        CHOOSE GIFT
+        <span class="arrow">➝</span>
+      </a>
+    </div>
+  </header>
+</sticky-header>
 
 <style>
-  header-drawer {
-    justify-self: start;
-    margin-left: -1.2rem;
+  .custom-navbar {
+    width: 1440px;
+    height: 64px;
+    background: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+    gap: 360px;
   }
 
-  {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
-    .scrolled-past-header .header__heading-logo-wrapper {
-      width: 75%;
-    }
-  {%- endif -%}
+  .navbar-logo {
+    font-size: 19px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+  }
 
-  {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 990px) {
-      header-drawer {
-        display: none;
-      }
-    }
-  {%- endif -%}
+  .navbar-subtitle {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 13.42px;
+    color: #000;
+    margin: 0;
+  }
+
+  .gift-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #000;
+    padding: 10px 20px;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .gift-btn::before {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    transition: left 0.4s ease;
+    z-index: -1;
+  }
+
+  .gift-btn:hover::before {
+    left: 0;
+  }
+
+  .arrow {
+    font-size: 16px;
+  }
 </style>
-
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
-
-{% liquid
-  assign header_tag = 'div'
-  if section.settings.sticky_header_type != 'none'
-    assign header_tag = 'sticky-header'
-  endif
-%}
-
-<{{ header_tag }}
-  {% if header_tag == 'sticky-header' %}
-    data-sticky-type="{{ section.settings.sticky_header_type }}"
-  {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient"
->
-  <header class="header page-width">
-    <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-      <span class="h2">{{ section.settings.logo_text }}</span>
-    </a>
-
-    {%- if section.settings.menu != blank -%}
-      {% if section.settings.menu_type_desktop == 'dropdown' %}
-        {% render 'header-dropdown-menu' %}
-      {% elsif section.settings.menu_type_desktop == 'mega' %}
-        {% render 'header-mega-menu' %}
-      {% endif %}
-    {%- endif -%}
-
-    <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset">
-      {% if cart == empty %}
-        <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
-      {% else %}
-        <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
-      {% endif %}
-      <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-      {%- if cart != empty -%}
-        <div class="cart-count-bubble">
-          <span aria-hidden="true">{{ cart.item_count }}</span>
-        </div>
-      {%- endif -%}
-    </a>
-  </header>
-</{{ header_tag }}>
 
 {% schema %}
 {
-  "name": "Header",
-  "settings": [
-    {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Logo Text",
-      "default": "TISSO VISION"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Main menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "select",
-      "id": "menu_type_desktop",
-      "label": "Menu style",
-      "options": [
-        { "value": "dropdown", "label": "Dropdown" },
-        { "value": "mega", "label": "Mega menu" },
-        { "value": "drawer", "label": "Drawer" }
-      ],
-      "default": "dropdown"
-    },
-    {
-      "type": "select",
-      "id": "sticky_header_type",
-      "label": "Sticky header",
-      "options": [
-        { "value": "none", "label": "None" },
-        { "value": "on-scroll-up", "label": "On scroll up" },
-        { "value": "always", "label": "Always" },
-        { "value": "reduce-logo-size", "label": "Reduce logo size" }
-      ],
-      "default": "on-scroll-up"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "link",
-      "name": "Navigation link",
-      "settings": [
-        {
-          "type": "url",
-          "id": "link_url",
-          "label": "Link URL"
-        }
-      ]
-    }
-  ],
-  "max_blocks": 5,
+  "name": "Custom Header",
+  "settings": [],
   "presets": [
     {
-      "name": "Header"
+      "name": "Custom Header"
     }
   ]
 }
