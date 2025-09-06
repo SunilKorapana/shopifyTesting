@@ -5,12 +5,6 @@
   "class": "section custom-image-banner",
   "settings": [
     {
-      "type": "url",
-      "id": "banner_svg",
-      "label": "Banner SVG URL",
-      "info": "Upload your SVG file in Content → Files and paste the URL here."
-    },
-    {
       "type": "color",
       "id": "background_color",
       "label": "Background Color",
@@ -27,11 +21,11 @@
 
 <section class="custom-banner" style="background-color: {{ section.settings.background_color }};">
   <div class="banner-wrapper">
-    {% if section.settings.banner_svg != blank %}
-      <img src="{{ section.settings.banner_svg }}" alt="Banner" class="banner-svg" loading="lazy">
-    {% else %}
-      <p style="text-align:center;">Upload your SVG in section settings → paste link</p>
-    {% endif %}
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0740/4371/9829/files/Frame.svg?v=1757139229" 
+      alt="Banner" 
+      class="banner-svg" 
+      loading="lazy">
   </div>
 </section>
 
