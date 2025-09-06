@@ -1,4 +1,4 @@
-{% schema %}
+{% comment %} {% schema %}
 {
   "name": "Gift Guide Section",
   "tag": "section",
@@ -129,4 +129,161 @@
   }
 }
 </style>
+ {% endcomment %}
 
+
+
+ {% schema %}
+{
+  "name": "Gift Guide Section",
+  "tag": "section",
+  "class": "section gift-guide-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Guide Section"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="gift-guide-section" style="background-color: {{ section.settings.background_color }};">
+  <div class="gift-guide-container">
+    
+    <!-- Left Side -->
+    <div class="gift-guide-left">
+      <h2 class="gift-heading">The Gift Guide</h2>
+      <p class="gift-description">
+        Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.
+      </p>
+      <a href="#" class="gift-button">
+        <span>SHOP NOW</span>
+      </a>
+    </div>
+
+    <!-- Right Side -->
+    <div class="gift-guide-right">
+      <img 
+        src="https://cdn.shopify.com/s/files/1/0740/4371/9829/files/svg_banner_1.svg?v=1757143257" 
+        alt="Gift Guide Banner" 
+        class="gift-svg">
+    </div>
+
+  </div>
+</section>
+
+<style>
+.gift-guide-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1300px; /* slightly wider */
+  margin: 0 auto;
+  gap: 60px; /* more spacing between text and image */
+  padding: 60px 20px;
+}
+
+.gift-guide-left {
+  flex: 1;
+  text-align: left;
+}
+
+.gift-guide-right {
+  flex: 1.2; /* make image area bigger */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gift-heading {
+  font-family: 'Jost', sans-serif;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 1.1;
+  color: #000;
+  margin-bottom: 24px;
+}
+
+.gift-description {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #000;
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+.gift-button {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  padding: 14px 32px;
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #000;
+  border-radius: 6px;
+  transition: color 0.3s ease;
+}
+
+.gift-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #FFD700; /* yellow */
+  transition: left 0.4s ease;
+  z-index: 1;
+}
+
+.gift-button span {
+  position: relative;
+  z-index: 2;
+}
+
+.gift-button:hover::before {
+  left: 0; /* animate from left to right */
+}
+
+.gift-button:hover {
+  color: #000; /* text turns black on yellow */
+}
+
+.gift-svg {
+  width: 100%;
+  max-width: 700px; /* bigger image */
+  height: auto;
+  object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .gift-guide-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .gift-guide-left, .gift-guide-right {
+    flex: unset;
+    width: 100%;
+  }
+  .gift-description {
+    margin: 0 auto 24px;
+  }
+  .gift-guide-right {
+    justify-content: center;
+  }
+}
+</style>
