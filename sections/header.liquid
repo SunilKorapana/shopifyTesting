@@ -2,6 +2,9 @@
   <header class="custom-navbar">
     <div class="navbar-left">
       <h1 class="navbar-logo">TISSO VISION</h1>
+    </div>
+
+    <div class="navbar-center">
       <p class="navbar-subtitle">Find the ideal gift for your loved ones.</p>
     </div>
 
@@ -13,73 +16,6 @@
     </div>
   </header>
 </sticky-header>
-
-<style>
-  .custom-navbar {
-    width: 1440px;
-    height: 64px;
-    background: #F5F5F5;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 50px;
-    gap: 360px;
-  }
-
-  .navbar-logo {
-    font-size: 19px;
-    font-weight: 700;
-    color: #000;
-    margin: 0;
-  }
-
-  .navbar-subtitle {
-    font-family: 'Jost', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 13.42px;
-    color: #000;
-    margin: 0;
-  }
-
-  .gift-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Jost', sans-serif;
-    font-size: 16px;
-    text-transform: uppercase;
-    color: #fff;
-    background: #000;
-    padding: 10px 20px;
-    border: none;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  .gift-btn::before {
-    content: "";
-    position: absolute;
-    left: -100%;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: #333;
-    transition: left 0.4s ease;
-    z-index: -1;
-  }
-
-  .gift-btn:hover::before {
-    left: 0;
-  }
-
-  .arrow {
-    font-size: 16px;
-  }
-</style>
 
 {% schema %}
 {
