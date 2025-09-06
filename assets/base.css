@@ -1989,8 +1989,12 @@ input[type='checkbox'] {
   margin: 0;
 }
 
-.quantity__input[type='number'] {
+/* .quantity__input[type='number'] {
   -moz-appearance: textfield;
+} */
+.my-input {
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 .quantity__rules {
@@ -3594,4 +3598,79 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
+}
+/* Navbar wrapper */
+.custom-navbar {
+  width: 1440px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 50px;
+  background: #F5F5F5;
+  gap: 360px; /* matches Figma */
+}
+
+/* Logo */
+.custom-navbar .nav-logo h1 {
+  font-size: 19px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+/* Middle text */
+.custom-navbar .nav-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  line-height: 20px;
+}
+
+/* Button styles */
+.gift-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 20px;
+  font-family: 'Jost', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #fff;
+  background: #000;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+/* Button hover animation */
+.gift-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 1;
+  transition: left 0.4s ease;
+}
+
+.gift-btn:hover::before {
+  left: 0;
+}
+
+.gift-btn span,
+.gift-btn {
+  position: relative;
+  z-index: 2;
+  color: #000;
+}
+
+.gift-btn:hover {
+  color: #000;
 }
