@@ -1,0 +1,93 @@
+{% schema %}
+{
+  "name": "Gift Guide Section",
+  "tag": "section",
+  "class": "section gift-guide-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gift Guide Section"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="gift-guide-section" style="background-color: {{ section.settings.background_color }};">
+  <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
+    
+    <!-- Left Side: Text + Button (40%) -->
+    <div class="md:w-2/5 flex flex-col gap-6">
+      <!-- Heading -->
+      <h2 class="gift-heading text-black font-jost font-medium text-[70px] leading-[100%]">
+        The Gift Guide
+      </h2>
+
+      <!-- Description -->
+      <p class="gift-description text-black font-jost font-normal text-[20px] leading-[140%]">
+        Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.
+      </p>
+
+      <!-- Button -->
+      <a href="#" class="gift-button inline-flex items-center justify-center bg-blue-600 text-white font-jost font-medium py-3 px-6 w-[220px] h-[50px] rounded-lg hover:bg-blue-700 transition-all duration-300 group">
+        SHOP NOW
+        <span class="ml-2 transform group-hover:translate-x-2 transition-all duration-300">→</span>
+      </a>
+    </div>
+
+    <!-- Right Side: SVG (60%) -->
+    <div class="md:w-3/5">
+      <img 
+        src="https://cdn.shopify.com/s/files/1/0740/4371/9829/files/svg_banner_1.svg?v=1757143257" 
+        alt="Gift Guide Banner" 
+        class="w-full h-auto object-contain"
+        loading="lazy">
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
+
+  .font-jost {
+    font-family: 'Jost', sans-serif;
+  }
+
+  .gift-guide-section .gift-heading {
+    /* ensures responsive heading scaling */
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  .gift-guide-section .gift-description {
+    max-width: 100%;
+  }
+
+  .gift-guide-section .gift-button {
+    cursor: pointer;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .gift-guide-section {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .gift-guide-section .md\\:w-2\\/5,
+    .gift-guide-section .md\\:w-3\\/5 {
+      width: 100%;
+    }
+
+    .gift-guide-section .gift-button {
+      margin: 0 auto;
+    }
+  }
+</style>
